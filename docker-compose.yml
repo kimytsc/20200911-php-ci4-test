@@ -1,0 +1,115 @@
+version: '3.2'
+
+services:
+  nginx:
+    container_name: nginx
+    restart: always
+    build: 
+      context: ./services/nginx
+      dockerfile: Dockerfile
+      args:
+        TZ: "Asia/Seoul"
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./source:/var/www
+      - ./logs:/var/www/logs
+      - ./services/nginx/etc/nginx/conf.d:/etc/nginx/conf.d
+    networks:
+      - backend
+    links:
+      - php
+      - adminer
+    depends_on:
+      - php
+
+  redis:
+    container_name: redis
+    restart: always
+    build: 
+      context: ./services/redis
+      dockerfile: Dockerfile
+      args:
+        TZ: "Asia/Seoul"
+    volumes:
+      - ./volumes/redis:/data/redis
+    networks:
+      - backend
+
+  ftp:
+    container_name: ftp
+    restart: always
+    build:
+      context: ./services/ftp
+      dockerfile: Dockerfile
+      args:
+        TZ: "Asia/Seoul"
+    environment:
+      PUBLICHOST: "localhost"
+      FTP_USER_NAME: "ftpadmin"
+      FTP_USER_PASS: "ftpadmin1234"
+      FTP_USER_HOME: "/var/www/storage"
+    volumes:
+      - ./volumes/ftp:/var/www/storage
+    networks:
+      - backend
+
+  mysql:
+    container_name: mysql
+    restart: always
+    build:
+      context: ./services/mysql
+      dockerfile: Dockerfile
+      args:
+        TZ: "Asia/Seoul"
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: admin20200911
+    networks:
+      - backend
+
+  adminer:
+    container_name: adminer
+    restart: always
+    build:
+      context: ./services/adminer
+      dockerfile: Dockerfile
+      args:
+        TZ: "Asia/Seoul"
+    environment:
+      ADMINER_DEFAULT_SERVER: mysql
+      ADMINER_PLUGINS: "tables-filter tinymce"
+    networks:
+      - backend
+    links:
+      - mysql
+    depends_on:
+      - mysql
+
+  php:
+    container_name: "php"
+    restart: always
+    build:
+      context: ./services/php
+      dockerfile: Dockerfile
+      args:
+        TZ: "Asia/Seoul"
+    volumes:
+      - ./source:/var/www
+      - ./logs:/var/www/logs
+    networks:
+      - backend
+    links:
+      - redis
+      - ftp
+      - mysql
+    depends_on:
+      - redis
+      - ftp
+      - mysql
+
+
+networks:
+  backend:
+    driver: bridge
