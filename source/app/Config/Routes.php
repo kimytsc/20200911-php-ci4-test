@@ -72,6 +72,18 @@ $routes->group('admin/example', [
 	]);
 });
 
+$routes->group('bootstrap', [
+	'namespace' => $routes->getDefaultNamespace(),
+	// 'filter' => 'auth',
+], function($routes) {
+	$routes->group('eliteadmin', function($routes) {
+		$routes->get('', function() {
+			return redirect()->to('eliteadmin/index');
+		});
+		$routes->get('(:any)', 'Bootstrap::eliteadmin/$1');
+	});
+});
+
 // $routes->group('swagger', [
 // 	'namespace' => $routes->getDefaultNamespace().'API\v1\swagger',
 // 	// 'filter' => 'api-auth',

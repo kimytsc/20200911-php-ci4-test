@@ -1,0 +1,18 @@
+.btn-group-vertical>.btn, .btn-group>.btn, .form-group .btn{ line-height:24px; }
+.form-group .radio-group, .form-group .checkbox-group{ line-height:38px; }
+.radio-group .custom-control, .checkbox-group .custom-control{ margin-left:10px; display:inline-block; vertical-align:middle; }
+.radio-group .custom-control:first-child, .checkbox-group .custom-control:first-child{ margin-left:0; }
+.radio-group .custom-control label, .checkbox-group .custom-control label{ cursor:pointer; }
+.radio-group .custom-control-label::after, .radio-group .custom-control-label::before, .checkbox-group .custom-control-label::after, .checkbox-group .custom-control-label::before{ margin-top:-8px; top:50%; }
+
+.custom-file-label::after, .custom-file-input:lang(en)~.custom-file-label::after{ content:'검색'; }
+.custom-file, .custom-file-input, .custom-file-label{ height:calc(1.5em + .75rem + 3px); }
+
+.dropdown-menu{ border-color:#bbb; }
+
+.form-horizontal label.text-right{ padding-top:10px; }
+
+.table-custom table{ width:100%; table-layout:fixed; }
+.table-custom tr th{ background-color:#f8f9fa; font-weight:bold; }
+
+.btn-100{ width:100%; }
