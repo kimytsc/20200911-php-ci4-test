@@ -1140,3 +1140,43 @@ if (! function_exists('view_cell'))
 			->render($library, $params, $ttl, $cacheName);
 	}
 }
+
+if (! function_exists('view_extend'))
+{
+	/**
+	 * Grabs the current RendererInterface-compatible class
+	 * and tells it to render the specified view. Simply provides
+	 * a convenience method that can be used in Controllers,
+	 * libraries, and routed closures.
+	 *
+	 * NOTE: Does not provide any escaping of the data, so that must
+	 * all be handled manually by the developer.
+	 *
+	 * @param string $layout
+	 * @param string $name
+	 * @param array  $data
+	 * @param array  $options Unused - reserved for third-party extensions.
+	 *
+	 * @return string
+	 */
+	function view_extend(string $layout, string $name, array $data = [], array $options = []): string
+	{
+		/**
+		 * @var CodeIgniter\View\View $renderer
+		 */
+		$renderer = Services::renderer();
+
+		$saveData = config(View::class)->saveData;
+
+		if (array_key_exists('saveData', $options))
+		{
+			$saveData = (bool) $options['saveData'];
+			unset($options['saveData']);
+		}
+
+		$renderer->extend($layout);
+
+		return $renderer->setData($data, 'raw')
+						->render($name, $options, $saveData);
+	}
+}

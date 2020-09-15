@@ -10,6 +10,7 @@ class MyStudents extends Model
 	// protected $returnType = 'array';
 	protected $returnType = '\App\Entities\MyStudents';
 	protected $useTimestamps = true;
+	protected $useSoftDeletes = true;
 	// protected $allowedFields = ['s_name','s_date','s_subject','s_update'];
 	protected $allowedFields = ['s_name','s_date','s_subject'];
 	protected $createdField = 's_date';

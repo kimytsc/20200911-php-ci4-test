@@ -81,6 +81,10 @@ $routes->group('bootstrap', [
 			return redirect()->to('eliteadmin/index');
 		});
 		$routes->get('(:any)', 'Bootstrap::eliteadmin/$1');
+		$routes->post('(:any)', 'Bootstrap::eliteadmin/$1');
+		$routes->put('(:any)', 'Bootstrap::eliteadmin/$1');
+		$routes->patch('(:any)', 'Bootstrap::eliteadmin/$1');
+		$routes->delete('(:any)', 'Bootstrap::eliteadmin/$1');
 	});
 });
 

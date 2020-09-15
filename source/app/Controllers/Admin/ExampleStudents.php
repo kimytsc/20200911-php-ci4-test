@@ -15,6 +15,9 @@ class ExampleStudents extends BaseController
 	{
 		// Do Not Edit This Line
 		parent::initController($request, $response, $logger);
+
+        // $this->article = model('App\Models\MyStudents');
+        // $this->model_class = 'article';
 	}
 
 	public function index()
@@ -31,7 +34,6 @@ class ExampleStudents extends BaseController
 	public function new()
 	{
 		return view('Admin/Example/StudentNew');
-		//echo ' new method';
 	}
 
 	public function create()
@@ -59,12 +61,8 @@ class ExampleStudents extends BaseController
 	public function edit($userId =  null)
 	{
 		if (!empty($userId)) {
-			$result = new MyStudents($userId);
-			var_dump($result);
-			// $std = new MyStudents();
-			// echo '===============================';
-			// var_dump($std);exit;
-			// $result = $std->find($userId);
+			$std = new MyStudents();
+			$result = $std->find($userId);
 			if ($result) {
 				$data['student'] = $result;
 				return view('Admin/Example/StudentEdit',$data);
@@ -93,7 +91,7 @@ class ExampleStudents extends BaseController
 		//echo $studentId;
 		//die();
 		$std = new MyStudents();
-		$result = $std->update($studentId,$updateStudent);
+		$result = $std->update($studentId, $updateStudent);
 		if ($result) {
 			$this->session->setFlashdata('message','You have successfully updated the student.');
 		}
@@ -109,9 +107,9 @@ class ExampleStudents extends BaseController
 			$std = new MyStudents();
 			$result = $std->where('s_id',$userId)->findAll();
 			if (count($result) > 0) {
-			//$result = $std->delete($userId);
+			$result = $std->delete($userId);
 			// $result = $std->where('s_id',$userId)->delete();
-			$result = $std->find($userId)->delete();
+			// $result = $std->find($userId)->delete();
 			if ($result){
 				$this->session->setFlashdata('message','You have successfully deleted.');
 				// return redirect()->to(site_url('admin/example/students'));
