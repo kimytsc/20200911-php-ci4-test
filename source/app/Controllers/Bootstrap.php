@@ -20,8 +20,8 @@ class Bootstrap extends BaseController
 	{
 		switch($path) {
 			case 'index2':
-				// return view_extend('Layouts\Eliteadmin\Index2\Index', 'Bootstrap/Eliteadmin/'.$path);
-				return view_extend('Layouts\Eliteadmin\Index2\Index', 'Bootstrap/Eliteadmin/'.$path, [
+				// return view_extend('Layouts/Eliteadmin/Index2/Index', 'Bootstrap/Eliteadmin/'.$path);
+				return view_extend('Layouts/Eliteadmin/Index2/Index', 'Bootstrap/Eliteadmin/'.$path, [
 					'title' => 'Eliteadmin::'.$path
 				]);
 				break;
@@ -46,31 +46,31 @@ class Bootstrap extends BaseController
 
 	public function _toolbar(array $data)
 	{
-		return view('Layouts\Eliteadmin\Index2\topbar');
+		return view('Layouts/Eliteadmin/Index2/topbar');
 	}
 
 	public function _preloader(array $data)
 	{
-		return view('Layouts\Eliteadmin\Index2\preloader');
+		return view('Layouts/Eliteadmin/Index2/preloader');
 	}
 
 	public function _leftSidebar(array $data)
 	{
-		return view('Layouts\Eliteadmin\Index2\leftSidebar');
+		return view('Layouts/Eliteadmin/Index2/leftSidebar');
 	}
 
 	public function _breadCrumb(array $data)
 	{
-		return view('Layouts\Eliteadmin\Index2\breadCrumb');
+		return view('Layouts/Eliteadmin/Index2/breadCrumb');
 	}
 
 	public function _rightSidebar(array $data)
 	{
-		return view('Layouts\Eliteadmin\Index2\rightSidebar');
+		return view('Layouts/Eliteadmin/Index2/rightSidebar');
 	}
 
 	public function _footer(array $data)
 	{
-		return view('Layouts\Eliteadmin\Index2\footer');
+		return view('Layouts/Eliteadmin/Index2/footer');
 	}
 }

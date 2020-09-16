@@ -40,27 +40,27 @@
         <?= $this->renderSection('js') ?>
     </head>
     <body class="skin-blue fixed-layout">
-        <? $this->include('Layouts\Eliteadmin\Index\preloader') ?>
+        <? $this->include('Layouts/Eliteadmin/Index/preloader') ?>
         <!-- ============================================================== -->
         <!-- Main wrapper - style you can find in pages.scss -->
         <!-- ============================================================== -->
         <div id="main-wrapper">
-            <?= $this->include('Layouts\Eliteadmin\Index\topbar') ?>
-            <?= $this->include('Layouts\Eliteadmin\Index\leftSidebar') ?>
+            <?= $this->include('Layouts/Eliteadmin/Index/topbar') ?>
+            <?= $this->include('Layouts/Eliteadmin/Index/leftSidebar') ?>
             <!-- ============================================================== -->
             <!-- Page wrapper  -->
             <!-- ============================================================== -->
             <div class="page-wrapper">
                 <div class="container-fluid">
-                    <?= $this->include('Layouts\Eliteadmin\Index\breadCrumb') ?>
+                    <?= $this->include('Layouts/Eliteadmin/Index/breadCrumb') ?>
                     <?= $this->renderSection('content') ?>
-                    <?= $this->include('Layouts\Eliteadmin\Index\rightSidebar') ?>
+                    <?= $this->include('Layouts/Eliteadmin/Index/rightSidebar') ?>
                 </div>
             </div>
             <!-- ============================================================== -->
             <!-- End Page wrapper  -->
             <!-- ============================================================== -->
-            <?= $this->include('Layouts\Eliteadmin\Index\footer') ?>
+            <?= $this->include('Layouts/Eliteadmin/Index/footer') ?>
         </div>
         <!-- ============================================================== -->
         <!-- End Wrapper -->
